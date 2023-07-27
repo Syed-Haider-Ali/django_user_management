@@ -8,11 +8,9 @@ from user_auth.user_controller import RegisterController,LogoutController, Login
 register_controller = RegisterController()
 login_controller = LoginController()
 logout_controller = LogoutController()
-
 user_list_controller = UserListController()
 forget_password_controller = ForgetPasswordController()
 verify_otp_controller = VerifyOtpController()
-# change_password_controller = ChangePasswordController()
 
 
 
@@ -37,7 +35,6 @@ class LogoutAPIView(ModelViewSet):
     permission_classes = (IsAuthenticated,)
     def logout(self,request):
         return logout_controller.logout(request)
-    
     
 class UserListAPIView(ModelViewSet):
     authentication_classes = (JWTAuthentication,)

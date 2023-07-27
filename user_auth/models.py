@@ -22,7 +22,6 @@ class User(AbstractUser):
     updated_at = models.DateTimeField(auto_now=True)
     is_locked = models.BooleanField(default=False)
 
-
     REQUIRED_FIELDS = ["email", "password"]
 
     def get_access_token(self):
