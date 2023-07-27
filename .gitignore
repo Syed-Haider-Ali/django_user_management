@@ -1,2 +1,20 @@
+# Ignore compiled Python files
+*.pyc
+*.pyo
+__pycache__
+
+# Ignore the virtual environment folder (if using virtualenv or venv)
+venv/
+env/
+
+# Ignore database files (if using SQLite)
+db.sqlite3
+
+# Ignore media files (if applicable)
+media/
+
+# Ignore static files (collected using "collectstatic" management command)
+static/
+
+# Ignore sensitive or environment-specific files
 .env
-env
