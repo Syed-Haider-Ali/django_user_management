@@ -17,3 +17,4 @@ OBJECTS_ASSOCIATED_CANNOT_BE_DELETED = (
 USER_ALREADY_EXISTS = "User already exits"
 INVALID_FILE_FORMAT = "Invalid file format"
 NOT_A_SUPERUSER = 'Not a Super User'
+PASSWORD_UPDATED = 'Password Updated successfully'
