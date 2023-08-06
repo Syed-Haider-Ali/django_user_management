@@ -44,6 +44,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+
 class VerifyOtpSerializer(serializers.Serializer):
     otp = serializers.CharField(
         label=_("otp"),

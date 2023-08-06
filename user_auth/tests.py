@@ -25,12 +25,32 @@ class RegisterAPITest(APITestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(User.objects.count(), 1)
 
-    def test_register_error_cases(self):
+    def test_register_without_email(self):
         new_user_data = {
             'first_name': 'Ali',
-
             'username': 's.haider0303@gmail.com',
             'password': 'qwertyuiop123',
         }
         response = self.client.post(self.url, new_user_data, format='json')
         self.assertEqual(response.status_code, 400)
+
+    def test_register_without_username(self):
+        new_user_data = {
+            'first_name': 'Ali',
+            'email': 's.haider0303@gmail.com',
+            'password': 'qwertyuiop123',
+        }
+        response = self.client.post(self.url, new_user_data, format='json')
+        self.assertEqual(response.status_code, 400)
+
+
+    def test_register_without_password(self):
+        new_user_data = {
+            'first_name': 'Ali',
+            'username': 's.haider0303@gmail.com',
+            'email': 's.haider0303@gmail.com',
+            'password': '',
+        }
+        response = self.client.post(self.url, new_user_data, format='json')
+        self.assertEqual(response.status_code, 400)
+
