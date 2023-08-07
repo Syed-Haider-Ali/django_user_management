@@ -27,7 +27,6 @@ class ForgetPasswordAPITest(APITestCase):
 
 
 
-'''
 class ChangePasswordAPITest(APITestCase):
     def setUp(self):
         self.user_data = {
@@ -183,4 +182,3 @@ class LoginAPITest(APITestCase):
         self.assertEqual(response_with_wrong_password.status_code, 400)
 
         
-        '''
