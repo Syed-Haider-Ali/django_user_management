@@ -43,7 +43,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = '__all__'
     def validate(self,instance):
-        if len(instance["password"]) < 8:
+        if len(instance["password"]) < 7:
             raise PasswordMustBeEightChar()
         return instance
 
@@ -72,7 +72,7 @@ class VerifyOtpSerializer(serializers.Serializer):
         user = self.context.get("user")
         if user.check_password(instance["new_password"]):
             raise SameOldPassword()
-        if len(instance["new_password"]) < 8:
+        if len(instance["new_password"]) < 7:
             raise PasswordMustBeEightChar()
         if instance['new_password'] != instance['confirm_password']:
             raise PasswordsDoesNotMatch()
