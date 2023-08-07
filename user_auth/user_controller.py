@@ -13,7 +13,6 @@ from utils.response_messages import *
 from utils.helper import create_response, paginate_data
 
 
-
 class ChangePasswordController:
     serializer_class = ChangePasswordSerializer
 
@@ -60,11 +59,11 @@ class ForgetPasswordController:
     def forget_password(self,request):
         serialized_data = self.serializer_class(data=request.data)
         if not serialized_data.is_valid():
-            create_response({},get_first_error_message(serialized_data.errors, UNSUCCESSFUL), status_code=400 )
+            return create_response({},get_first_error_message(serialized_data.errors, UNSUCCESSFUL), status_code=400 )
         
         user = User.objects.filter(email=request.data['email']).first()
         if not user:
-            create_response({}, USER_NOT_FOUND, status_code=404)
+            return create_response({}, USER_NOT_FOUND, status_code=404)
 
         otp = generate_six_length_random_number()
         user.otp = otp
@@ -90,9 +89,6 @@ class RegisterController:
         serialized_data = self.serializer_class(data=request.data)
 
         if serialized_data.is_valid():
-            # request.POST._mutable = True
-            # request.data['password'] = make_password(request.data['password'])
-            # request.POST._mutable = False
             instance = serialized_data.save()
             return create_response(self.serializer_class(instance).data, SUCCESSFUL, status_code=200)
         else:

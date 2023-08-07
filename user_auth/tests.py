@@ -8,8 +8,8 @@ class ForgetPasswordAPITest(APITestCase):
     def setUp(self):
         self.user_data = {
             "first_name": 'Haider',
-            "email": 'haider@gmail.com',
-            "username": "haider@gmail.com",
+            "email": 's.haider0303@gmail.com',
+            "username": "s.haider0303@gmail.com",
             "password": "abcd1234"
         }
         self.user = User.objects.create_user(**self.user_data)
@@ -23,7 +23,7 @@ class ForgetPasswordAPITest(APITestCase):
     def test_forget_password_wrong_credential(self):
         data = {"email": "wrong@gmail.com" }
         response = self.client.post(self.url, data)
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 404)
 
 
 
