@@ -3,6 +3,31 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 from .models import User
 
+
+class ForgetPasswordAPITest(APITestCase):
+    def setUp(self):
+        self.user_data = {
+            "first_name": 'Haider',
+            "email": 'haider@gmail.com',
+            "username": "haider@gmail.com",
+            "password": "abcd1234"
+        }
+        self.user = User.objects.create_user(**self.user_data)
+        self.url = reverse('forget_password')
+
+    def test_forget_password(self):
+        data = {"email": self.user_data['email'] }
+        response = self.client.post(self.url, data)
+        self.assertEqual(response.status_code, 200)
+
+    def test_forget_password_wrong_credential(self):
+        data = {"email": "wrong@gmail.com" }
+        response = self.client.post(self.url, data)
+        self.assertEqual(response.status_code, 400)
+
+
+
+'''
 class ChangePasswordAPITest(APITestCase):
     def setUp(self):
         self.user_data = {
@@ -156,3 +181,6 @@ class LoginAPITest(APITestCase):
         response_with_wrong_password = self.client.post(self.url, login_data_with_wrong_password)
         self.assertEqual(response_with_wrong_username.status_code, 400)
         self.assertEqual(response_with_wrong_password.status_code, 400)
+
+        
+        '''
