@@ -7,9 +7,6 @@ class RegisterAPITest(APITestCase):
     def setUp(self):
         self.url = reverse('register')
 
-
-
-ddq
     def test_create_user(self):
         new_user_data = {
             'first_name': 'Ali',
@@ -80,3 +77,36 @@ ddq
         self.assertEqual(response_with_no_password.status_code, 400)
         self.assertEqual(response_with_password_less_than_7.status_code, 400)
 
+
+class LoginAPITest(APITestCase):
+    def setUp(self):
+        self.user_data = {
+            "first_name":"Umar",
+            "email":"umar@gmail.com",
+            "username": "umar@gmail.com",
+            "password": "abcd1234"
+        }
+        self.user = User.objects.create_user(**self.user_data)
+        self.url = reverse('login')
+
+    def test_login(self):
+        login_data = {
+            "username": self.user_data['username'],
+            "password": self.user_data['password']
+        }
+        response = self.client.post(self.url, login_data, format='json')
+        self.assertEqual(response.status_code, 200)
+
+    def test_login_with_wrong_credentials(self):
+        login_data_with_wrong_username = {
+            "username": "hello@gmail.com",
+            "password": self.user_data['password']
+        }
+        login_data_with_wrong_password = {
+            "username": self.user_data['username'],
+            "password": "alphabeta"
+        }
+        response_with_wrong_username = self.client.post(self.url, login_data_with_wrong_username, format='json')
+        response_with_wrong_password = self.client.post(self.url, login_data_with_wrong_password, format='json')
+        self.assertEqual(response_with_wrong_username.status_code, 400)
+        self.assertEqual(response_with_wrong_password.status_code, 400)
