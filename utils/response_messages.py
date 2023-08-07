@@ -18,3 +18,4 @@ USER_ALREADY_EXISTS = "User already exits"
 INVALID_FILE_FORMAT = "Invalid file format"
 NOT_A_SUPERUSER = 'Not a Super User'
 PASSWORD_UPDATED = 'Password Updated successfully'
+PASSWORD_IS_REQUIRED = 'Password is required'

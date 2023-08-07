@@ -10,7 +10,7 @@ class User(TimeStamps,AbstractUser):
     first_name = models.CharField(max_length=100, blank=True, null=True)
     last_name = models.CharField(max_length=100, blank=True, null=True)
     username = models.CharField(unique=True, max_length=100)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     phone = models.CharField(max_length=50, blank=True, null=True)
     password = models.CharField(max_length=100)
     otp = models.IntegerField(null=True, blank=True)

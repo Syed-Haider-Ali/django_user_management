@@ -87,13 +87,12 @@ class RegisterController:
     serializer_class = UserSerializer
 
     def create(self,request):
-        request.POST._mutable = True
-        request.data['password'] = make_password(request.data['password'])
-        request.POST._mutable = False
-        
         serialized_data = self.serializer_class(data=request.data)
 
         if serialized_data.is_valid():
+            request.POST._mutable = True
+            request.data['password'] = make_password(request.data['password'])
+            request.POST._mutable = False
             instance = serialized_data.save()
             return create_response(self.serializer_class(instance).data, SUCCESSFUL, status_code=200)
         else:

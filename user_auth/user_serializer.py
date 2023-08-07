@@ -42,6 +42,10 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
+    def validate(self,instance):
+        if len(instance["password"]) < 8:
+            raise PasswordMustBeEightChar()
+        return instance
 
 
 
