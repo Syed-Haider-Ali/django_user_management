@@ -19,7 +19,6 @@ class User(TimeStamps,AbstractUser):
     failed_login_attempts = models.IntegerField(default=0)
     last_failed_time = models.DateTimeField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
-
     is_locked = models.BooleanField(default=False)
 
     REQUIRED_FIELDS = ["email", "password"]

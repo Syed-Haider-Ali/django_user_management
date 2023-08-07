@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.hashers import make_password
+
 
 from user_auth.models import User
 from utils.custom_exceptions import PasswordMustBeEightChar, SameOldPassword, PasswordsDoesNotMatch, WrongOldPassword
@@ -45,6 +47,7 @@ class UserSerializer(serializers.ModelSerializer):
     def validate(self,instance):
         if len(instance["password"]) < 7:
             raise PasswordMustBeEightChar()
+        instance['password'] = make_password(instance['password'])
         return instance
 
 
