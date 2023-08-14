@@ -1,9 +1,32 @@
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
+from django.core.management import call_command
+
 from .models import User
 
+# class VerifyOtpAPITest(APITestCase):
+#     def setUp(self):
+#         self.user_data = {
+#             "first_name": 'Haider',
+#             "email": 's.haider0303@gmail.com',
+#             "username": "s.haider0303@gmail.com",
+#             "password": "abcd1234",
+#             "otp": 123456
+#         }
+#         self.user = User.objects.create_user(**self.user_data)
+#         self.url = reverse('verify_otp')
+#
+#     def test_verify_otp(self):
+#         data = {
+#             "otp": 123456,
+#             "new_password": "alphabeta",
+#             "confirm_password": "alphabeta"
+#         }
+#         response = self.client.post(self.url, data)
+#         self.assertEqual(response.status_code, 200)
 
+#
 class ForgetPasswordAPITest(APITestCase):
     def setUp(self):
         self.user_data = {
@@ -24,7 +47,6 @@ class ForgetPasswordAPITest(APITestCase):
         data = {"email": "wrong@gmail.com" }
         response = self.client.post(self.url, data)
         self.assertEqual(response.status_code, 404)
-
 
 
 class ChangePasswordAPITest(APITestCase):
@@ -181,4 +203,5 @@ class LoginAPITest(APITestCase):
         self.assertEqual(response_with_wrong_username.status_code, 400)
         self.assertEqual(response_with_wrong_password.status_code, 400)
 
+        
         
