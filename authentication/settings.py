@@ -64,7 +64,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'debug_toolbar',
+    # 'debug_toolbar',
     'user_auth',
 
 ]
@@ -82,9 +82,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'authentication.urls'
 
-INTERNAL_IPS = [
-    '127.0.0.1',
-]
+# INTERNAL_IPS = [
+#     '127.0.0.1',
+# ]
 
 
 TEMPLATES = [
