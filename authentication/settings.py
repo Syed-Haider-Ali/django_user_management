@@ -64,7 +64,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'debug_toolbar',
     'user_auth',
 
 ]
@@ -73,7 +72,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-        'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -106,17 +104,20 @@ TEMPLATES = [
 WSGI_APPLICATION = 'authentication.wsgi.application'
 
 
+
+
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        "NAME": DATABASE_NAME,
-        "USER": DATABASE_USERNAME,
-        "PASSWORD": DATABASE_PASSWORD,
-        "HOST": DATABASE_HOST,
-        "PORT": DATABASE_PORT,
+        "NAME": "django_auth_db",
+        "USER": "postgres",
+        "PASSWORD": "admin",
+        "HOST": "db",
+        # this HOST is the db_container
+        "PORT": 5432,
     
     },
 }
