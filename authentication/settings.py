@@ -21,11 +21,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env"))
 
-DATABASE_NAME = os.environ.get("DATABASE_NAME")
-DATABASE_USERNAME = os.environ.get("DATABASE_USERNAME")
-DATABASE_PASSWORD = os.environ.get("DATABASE_PASSWORD")
-DATABASE_HOST = os.environ.get("DATABASE_HOST")
-DATABASE_PORT = os.environ.get("DATABASE_PORT")
+# DATABASE_NAME = os.environ.get("DATABASE_NAME")
+# DATABASE_USERNAME = os.environ.get("DATABASE_USERNAME")
+# DATABASE_PASSWORD = os.environ.get("DATABASE_PASSWORD")
+# DATABASE_HOST = os.environ.get("DATABASE_HOST")
+# DATABASE_PORT = os.environ.get("DATABASE_PORT")
 
 EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
@@ -111,15 +111,19 @@ WSGI_APPLICATION = 'authentication.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        "NAME": DATABASE_NAME,
-        "USER": DATABASE_USERNAME,
-        "PASSWORD": DATABASE_PASSWORD,
-        "HOST": "db",
-        # this HOST is the db_container
-        "PORT": 5432,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     "NAME": DATABASE_NAME,
+    #     "USER": DATABASE_USERNAME,
+    #     "PASSWORD": DATABASE_PASSWORD,
+    #     "HOST": "db",
+    #     # this HOST is the db_container
+    #     "PORT": 5432,
     
-    },
+    # },
 }
 
 
